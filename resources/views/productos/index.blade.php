@@ -59,8 +59,12 @@
 									</th>
 										
 									<th>
-									</th>
-								</tr>
+										{!!Form::open(['class'=>'en-linea', 'route'=>['productos.eliminar', $producto->id], 'method' => 'DELETE'])!!}
+					                        <button class="btn btn-danger" onclick="return confirm('¿Realmente deseas borrar el producto?')" type="submit">
+					                            Borrar
+					                        </button>
+					                        {!!Form::close()!!}
+									</th>								</tr>
 							@endforeach
 						</table>
 						<a href="{{route('categorias.borradas')}}">

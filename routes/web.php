@@ -31,6 +31,10 @@ Route::post('categorias/busqueda', [
 
 //ABM para productos
 Route::resource('productos', 'ProductosController')->except('show');
+Route::delete('productos/{id}/eliminar', [
+        'uses' => 'ProductosController@eliminar',
+        'as'   => 'productos.eliminar',
+    ]);
 
 Route::get('/', function () {
 

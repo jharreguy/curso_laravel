@@ -11,9 +11,8 @@ class ProductosController extends Controller
     public function index()
     {
         $productos = Producto::OrderBy('nombre', 'DESC')
-        	->Where('categoria_id', 3)
         	->get();
-        	
+
         return view('productos.index', compact('productos'));
     }
 
@@ -56,5 +55,11 @@ class ProductosController extends Controller
         $producto->categoria_id = $request->categoria_id;
         $producto->save();
         return redirect()->route('productos.index');
+    }
+
+    public function eliminar($id){
+    	$producto = Producto::find($id);
+    	$producto->delete();
+    	return redirect()->route('productos.index');
     }
 }
