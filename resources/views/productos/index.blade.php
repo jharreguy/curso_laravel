@@ -38,7 +38,6 @@
 							</thead>
 							@foreach($productos as $producto)
 								<tr>
-									
 									<th class="datos">
 										{{$producto->nombre}}
 									</th>

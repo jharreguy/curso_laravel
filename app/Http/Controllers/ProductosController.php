@@ -10,7 +10,10 @@ class ProductosController extends Controller
 {
     public function index()
     {
-        $productos = Producto::all();
+        $productos = Producto::OrderBy('nombre', 'DESC')
+        	->Where('categoria_id', 3)
+        	->get();
+        	
         return view('productos.index', compact('productos'));
     }
 
@@ -45,4 +48,13 @@ class ProductosController extends Controller
         return view('productos.edit', compact('categorias', 'producto'));
     }
 
+    public function update(Request $request, $id){
+    	$producto = Producto::find($id);
+    	$producto->nombre = $request->nombre;
+        $producto->descripcion = $request->descripcion;
+        $producto->precio = $request->precio;
+        $producto->categoria_id = $request->categoria_id;
+        $producto->save();
+        return redirect()->route('productos.index');
+    }
 }
